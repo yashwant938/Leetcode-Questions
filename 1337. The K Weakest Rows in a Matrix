@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        vector<vector<int>> out; 
+        vector<int> temp; 
+        int sol = 0; 
+        for(int i=0;i<mat.size();i++){
+            for(int j=0;j<mat[0].size();j++){
+                if(mat[i][j]==1)
+                    sol++;
+            }
+            temp.push_back(sol);
+            temp.push_back(i);           
+            out.push_back(temp);
+            temp.clear();  
+            sol = 0;
+        }
+        sort(out.begin(),out.end()); 
+        vector<int> outVec; 
+        for(int i=0;i<k;i++){
+            outVec.push_back(out[i][1]);
+        }
+        return outVec;
+    }
+};
